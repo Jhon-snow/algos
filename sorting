@@ -1,0 +1,89 @@
+package com.company;
+import java.util.*;
+public class Sorting {
+
+    //bubble sort
+    int[] bubble(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            for(int j=i;j<arr.length;j++){
+                if(arr[i]>arr[j]){
+                    //swap
+                    int temp=arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    //selection sort
+    int[]  selectionsort(int arr[]){
+        int min;
+        for(int i=0;i<arr.length-1;i++){//length-1 times cause at last position there is nothing to compare with so index out of bound can occur
+             min=i;
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[j]<arr[min])//find min in range
+                    min=j;//update min index in current range
+            }
+           int temp=arr[i];//swap current node with minimum
+            arr[i]=arr[min];
+            arr[min]=arr[temp];
+        }
+        return arr;
+    }
+
+    //inssertionsort
+int [] insertionsort(int arr[]){
+        int a;
+        for(int i=1;i<arr.length-1;i++){          //its stable algo
+            a=arr[i];
+            int j=i;
+           while( j>=1&&arr[j-1]>a ){//greater than &equal tp 1 cause indexx become negative if there is 0
+               //if(arr[j-1]>arr[j])
+                   arr[j]=arr[j-1];
+                   j--;
+           }
+           arr[j]=a;
+        }
+        return arr;
+}
+
+
+//countingsort
+    int [] countingsort(int arr[],int k){//k is the range
+        int ar[]=new int[arr.length];
+        int []b=new int[k+1];
+        for(int i=0;i<arr.length;i++){
+            b[arr[i]]+=1;
+        }
+        for(int j=1;j<k;j++){
+        b[j]+=b[j-1];
+        }
+        for(int m=arr.length-1;m>=0;m--){
+            ar[b[arr[m]]]=arr[m];
+            b[arr[m]]--;
+        }
+        return ar;
+    }
+     int [] quicksort(int arr[]){
+        
+     }
+
+    public static void main(String []args){
+        Scanner scan=new Scanner(System.in);
+      //  int arr[]=new int[]{3,2,5,9,1,0,4};
+       Sorting s=new Sorting();
+      //arr=  s.bubble(arr);
+     // System.out.println(Arrays.toString(arr));
+       // arr=  s.selectionsort(arr);
+        //System.out.println(Arrays.toString(arr));
+      //  arr=  s.insertionsort(arr);
+       // System.out.println(Arrays.toString(arr));
+        int arr[]=new int[]{3,3,2,5,5,9,1,1,0,4};
+         arr=s.countingsort(arr,9);
+        System.out.println(Arrays.toString(arr));
+    }
+
+
+}
