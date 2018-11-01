@@ -14,7 +14,7 @@ public class GFG {
     static boolean knightmove(int arr[][],int n,int c,int i,int j){
         if(arr[i][j]!=0)
         return false;
-        arr[i][j]=c++;
+        arr[i][j]=++c;
         if(c==n*n-1)
         return true;
         
