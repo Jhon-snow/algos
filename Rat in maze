@@ -1,0 +1,48 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+
+public class GFG {
+    
+    
+    static boolean isValid(int i,int j,int arr[][],int n){
+        if(i>=0&i<n&& j>=0&&j<n)
+        return true ;
+        return false;
+    }
+    static boolean path(int arr[][],int i,int j,int n,StringBuilder sb){
+        if(arr[i][j]!=1)
+        return false;
+        if(i==n-1&&j==n-1)
+        return true;
+         sb.append('D');
+        if(isValid(i+1,j,arr,n) && path(arr,i+1,j,n,sb)){
+        return true;}
+        if((sb.length()>0))
+        sb.deleteCharAt(sb.length()-1);
+         sb.append('R');
+        if(isValid(i,j+1,arr,n)&&path(arr,i,j+1,n,sb)){
+        return true;}
+         if((sb.length()>0))
+       sb.deleteCharAt(sb.length()-1);
+        return false;
+        
+    }
+    public static void main(String[] args){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int arr[][]=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=scan.nextInt();
+            }
+        }
+        String s="";
+        StringBuilder sb=new StringBuilder(s);
+       boolean flag= path(arr,0,0,n,sb);
+       if(flag==true)
+       System.out.print(sb.toString());
+       else
+       System.out.println("no way");
+    }
+	}
