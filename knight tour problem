@@ -1,0 +1,62 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+
+public class GFG {
+    
+    
+    static boolean isValid(int row,int col,int arr[][],int N){
+        if (row >= 0 && col >= 0 && row < N && col < N) {
+			return true;
+		}
+		return false;
+    }
+    static boolean knightmove(int arr[][],int n,int c,int i,int j){
+        if(arr[i][j]!=0)
+        return false;
+        arr[i][j]=c++;
+        if(c==n*n-1)
+        return true;
+        
+                    if(isValid(i+1,j+2,arr,n) && knightmove(arr,n,c,i+1,j+2))
+                   return true;
+                   if(isValid(i+1,j-2,arr,n) && knightmove(arr,n,c,i+1,j-2))
+                   return true;
+                   if(isValid(i+2,j+1,arr,n) && knightmove(arr,n,c,i+2,j+1))
+                   return true;
+                   if(isValid(i-2,j+1,arr,n) && knightmove(arr,n,c,i-2,j+1))
+                   return true;
+                   if(isValid(i+2,j-1,arr,n) && knightmove(arr,n,c,i+2,j-1))
+                   return true;
+                    if(isValid(i-2,j-1,arr,n) && knightmove(arr,n,c,i-2,j-1))
+                   return true;
+                   if(isValid(i-1,j-2,arr,n) && knightmove(arr,n,c,i-1,j-2))
+                   return true;
+                   if(isValid(i-1,j+2,arr,n) && knightmove(arr,n,c,i-1,j+2))
+                   return true;
+                arr[i][j]=0;
+                c--;
+                return false;
+            
+        
+    }
+	public static void main (String[] args) {
+		//System.out.println("GfG!");
+		Scanner scan=new Scanner(System.in);
+		int n=scan.nextInt();
+		int arr[][]=new int[n][n];
+	boolean flag=	knightmove(arr, n,0,0,0);
+	if (flag==true)
+	 {
+	//	DecimalFormat twodigits = new DecimalFormat("00");
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr.length; j++) {
+				System.out.print("   " + arr[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	else
+	System.out.println("not possible");
+	}
+	}
