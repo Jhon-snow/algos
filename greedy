@@ -1,0 +1,78 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class GFG
+ {
+     
+     static void sort(int s[],int d[],int p[],int n){
+           int a,b,c;
+        for(int i=1;i<p.length-1;i++){          //its stable algo
+            a=p[i];
+            b=s[i];
+            c=d[i];
+            int j=i;
+           while( j>=1&&p[j-1]>a ){//greater than &equal tp 1 cause indexx become negative if there is 0
+               //if(arr[j-1]>arr[j])
+                   p[j]=p[j-1];
+                   s[j]=s[j-1];
+                   d[j]=d[j-1];
+                   j--;
+           }
+           p[j]=a;
+           s[j]=b;
+           d[j]=c;
+           
+        }
+       
+      
+     }
+	public static void main (String[] args)
+	 {
+	 //code
+	 Scanner scan=new Scanner(System.in);
+	 int t=scan.nextInt();
+	 while(t-->0){
+	     int n=scan.nextInt();
+	      int s[]=new int[n];
+	         int d[]=new int[n];
+	         int p[]=new int[n];
+	         
+	    for(int i=0;i<n;i++)
+	    {
+	         
+	             s[i]=scan.nextInt();
+	             d[i]=scan.nextInt();
+	             p[i]=scan.nextInt();
+	          
+	     }
+	     sort(s,d,p,n);
+	   //   System.out.println( Arrays.toString(s));
+    //      System.out.println( Arrays.toString(d));
+    //       System.out.println( Arrays.toString(p));
+	    
+	     boolean sum[]=new boolean[101];
+	     for(int j=0;j<100;j++)
+	     sum[j]=false;
+	      // for(int j=0;j<100;j++)
+	       // System.out.print(flag[j]+" ");
+	      // System.out.print(d[0]);
+	       int c=0,cal=0;
+	   for(int i=0;i<n;i++){
+           if(!sum[d[i]])
+           {sum[d[i]]=true;cal+=p[i];c++;}
+           else{
+               int j=d[i];
+               while(j>0){
+                   if(!sum[j]){
+                       sum[j]=true;cal+=p[i];c++;
+                       break;
+                   }j--;
+               }
+           }
+	    
+	    
+	  }
+	  System.out.println(c+" "+cal);
+	 }
+	 }
+}
