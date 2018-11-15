@@ -1,0 +1,65 @@
+import java.util.*;
+
+ class pair{
+        int a;
+        int b;
+    }
+public class Main{
+   public static void main(String args[]){
+    Scanner scan=new Scanner(System.in);
+    int t=scan.nextInt();
+    while(t-->0){
+        int n=scan.nextInt();
+        int amax=scan.nextInt();
+        int bmax=scan.nextInt();
+         pair[] arr= new pair[n];
+           int sum=0;
+		    for(int i=0;i<n;i++)
+		    arr[i]= new pair();
+		    for(int i=0;i<n;i++)
+		    arr[i].a=scan.nextInt();
+		    for(int i=0;i<n;i++)
+		    arr[i].b=scan.nextInt();
+		    Arrays.sort(arr,new Comparator<pair>(){
+		        public int compare (pair i,pair j){
+		            int diff1=Math.abs(i.a-i.b);
+		            int diff2=Math.abs(j.a-j.b);
+		            return diff2-diff1;
+		        }
+		        });
+		          
+		          for(int i=0;i<n;i++){
+		              System.out.println(arr[i].a+" "+arr[i].b);
+		          }
+		          System.out.println();
+		          for(int i=0;i<arr.length;i++)
+		        {
+		            if(arr[i].a>arr[i].b && amax>0)
+		            {
+		                sum+=arr[i].a;
+		                amax--;
+		                System.out.println(arr[i].a+" "+amax);
+		            }
+		            else if(arr[i].b>arr[i].a && bmax>0)
+		            {
+		                sum+=arr[i].b;
+		                bmax--;
+		                 System.out.println(arr[i].b+" "+bmax);
+		            }
+		            else if(amax==0)
+		            {
+		                sum+=arr[i].b;
+		                bmax--;
+		                 System.out.println(arr[i].b+" "+bmax);
+		            }
+		            else
+		            {
+		                sum+=arr[i].a;
+		                amax--;
+		                System.out.println(arr[i].a+" "+amax);
+		            }
+		        }
+		     System.out.println(sum);
+    }
+   }
+}
