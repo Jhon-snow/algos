@@ -1,0 +1,43 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t= Integer.parseInt(br.readLine());
+		while(t-->0)
+		{
+		    int n= Integer.parseInt(br.readLine());    
+		    String str[] = br.readLine().split(" ");
+		    int[] s= new int[n];
+		    for(int i=0; i<n; i++)
+		    s[i]=Integer.parseInt(str[i]);
+		    
+		    Map<Integer,Integer> tm= new HashMap<Integer,Integer>();
+		    for(int i=0; i<n; i++)
+		    {
+		        if(tm.containsKey(s[i]))
+		        tm.put(s[i], tm.get(s[i])+1);
+		        else
+		        tm.put(s[i], 1);
+		    }
+		    //StringBuffer result = new StringBuffer(); 
+		    getfreq(tm);
+		    System.out.println();
+		}
+	}
+	
+	public static void getfreq(Map<Integer,Integer> tm)
+	{
+	    tm.entrySet().stream().sorted(Map.Entry.<Integer,Integer> comparingByValue().reversed()).forEach(e->
+	    {
+	        int key= (int)e.getKey();
+	        int v= (int)e.getValue();
+	        
+	        for(int i=0; i<v; i++)
+	        System.out.print(key+" ");
+	        });
+	}
+}
