@@ -1,0 +1,37 @@
+//package com.company;
+import java.util.*;
+public class Graph {
+        
+    static String lcp(String []arr){
+        if(arr==null || arr.length==0)
+            return "-1";
+        
+        String cmp=arr[0];
+        for(int i=1;i<arr.length;i++){
+            int j=0;
+            String cstr=arr[i];
+            while (j<cmp.length() && j< cstr.length() && cmp.charAt(j)==cstr.charAt(j)){
+                j++;
+            }
+            if(j==0)
+                return "-1";
+            cmp=cmp.substring(0,j);
+        }
+        return cmp;
+    }
+
+    public static void main(String args[]){
+        Scanner scan=new Scanner(System.in);
+        int t=scan.nextInt();
+        while(t-->0){
+        int n=scan.nextInt();
+        String arr[]=new String[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.next();
+        }
+                System.out.println(lcp(arr));    
+        }
+        
+    }
+
+}
